@@ -1,0 +1,32 @@
+plugins {
+    id("org.jetbrains.kotlin.jvm") version "1.9.22"
+    id("application")
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.postgresql:postgresql:42.2.24") // PostgreSQL driver
+    implementation("com.h2database:h2:1.4.200")         // H2 database (compatible version)
+    implementation("org.orbisgis:h2gis:1.4.0")          // H2GIS for spatial functions
+    implementation("org.slf4j:slf4j-nop:1.7.32")        // Suppress SLF4J warnings
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
+application {
+    mainClass.set("MainKt")  // Main class name for running the application
+}
